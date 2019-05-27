@@ -1,0 +1,6 @@
+
+@import '~antd/dist/antd.css';
+.navBar input{border:none}
+.logo img{max-width: 40%;}
+.ant-menu-item.logo {max-width: 40%;}
+
