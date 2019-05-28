@@ -2,7 +2,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
-
 import { List, Avatar, Icon,Button } from 'antd';
 
 
@@ -31,7 +30,7 @@ const IconText = ({ type, text,size="25px"  }) => (
   
   </span>
 );
-class Projet extends React.Component{
+class ProjetAnt extends React.Component{
 render(){
 
 return(
@@ -81,4 +80,4 @@ return(
 )
       }
       }
-      export default Projet;
+      export default ProjetAnt;
