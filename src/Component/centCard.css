@@ -1,0 +1,85 @@
+@-webkit-keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+@keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+.p-1 {
+  padding: 1rem;
+}
+
+.bg-white {
+  background: #fff;
+  color: #333;
+  border: #ccc solid 1px;
+}
+
+.badge-light {
+  border: #ccc solid 1px;
+}
+
+.post {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 185px;
+  width: 100%;
+  padding: 10px 30px;
+  box-sizing: border-box
+}
+
+.post > div:first-child {
+  text-align: center;
+}
+
+.post .post-date {
+  color: #aaa;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-title {
+  margin-right: 5px;
+  border-bottom: 2px solid #48B9E1;
+}
+.bio {
+  margin: 1rem 0;
+  text-align: justify;
+}
+.expand {
+  font-size: 16px;
+  color: #48B9E1;
+  position: relative;
+  top: 2px;
+}
+.expand-up {
+  font-size: 16px;
+  color: #48B9E1;
+  position: relative;
+  top: 3px;
+}
+/* .sarra{
+  --primary-color: #17a2b8;
+  --dark-color: #343a40;
+  --light-color: #f4f4f4;
+  --danger-color: #dc3545;
+  --success-color: #28a745;} */
