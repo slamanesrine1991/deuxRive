@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 import NavBar from './Component/NavBar';
 import Dashboard from './Component/List';
-
+import Contact from './Component/Contact'
+import Cent from './Component/Cent';
+import Forum from './Component/Forum';
 import Home from './Component/Home'
 function App() {
   return (
@@ -15,13 +17,10 @@ function App() {
           <div className="container">
            
             <Route exact path="/" render={() => <Home/>} />
-          
-            
-          
-             
-            <Route exact path="/projects"  component ={Dashboard} />
-           {/*  <Route exact path="/login-admin" component={LoginAdmin} />
-            <Route exact path="/job-offers" component={OfferDashboard} /> */}
+            <Route exact path="/contact" component={Contact} />       
+           <Route exact path="/projects"  component ={Dashboard} />
+           <Route exact path="/forums" component={Forum} />
+            <Route exact path="/cent" component={Cent} /> 
        
         </div>
        

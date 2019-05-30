@@ -1,55 +1,21 @@
 
 @import '~antd/dist/antd.css';
 /*nav bar*/
-.navBar ul{border:none}
-.navBar{    margin-top: 15px;text-transform: uppercase;display: flex;
-    justify-content: center;margin-bottom: 35px;}
-.navBar li{min-width: 72px;
-    height: 64px;
-    line-height: 60px;}
-.navBar input{border:none}
-.logo img{
-    /*width: 210px;*/
-    width: 140px;
-    margin-left: 20px;
-}
-.logo{    min-width: 280px;}
-/* .logo:after{    content: "";
-    height: 25px;
-    position: relative;
 
-    top: 12px;
-    display: inline-block;
-    width: 1px;
-    background-color: #dcd8d8;
-   
-    left: 145px;
-} */
-.logo span{    margin-left: 20px;}
-.logoSearch input{padding-left: 20px;}
-.logoSearch span span {left:0px}
-.logoSearch{    display: flex;}
-
-
-.NavMenu{display: flex;    align-items: baseline;
-    justify-content: space-around;}
-.NavMenu li{    margin-right: 20px;    font-weight: 500;    FONT-SIZE: 16PX;}    
-.NavMenu img {max-width: 65%;}
-.NavItem {list-style: none;
-display: flex;text-transform: uppercase}
-.NavMenu input{border: none;}
 
 /*projects*/
 .projectsList .ant-list-pagination {display: flex; justify-content: center}
-.projectHeader{text-transform: uppercase;color:#213869;    font-size: 20px;    line-height: 20px;
-margin-bottom: 0 !important}
+.projectHeader{text-transform: uppercase;color:#213869;    font-size: 20px;    line-height: 20px;    align-items: center;
+margin-bottom: 20px !important;display: flex;justify-content: space-between}
+
+.projectHeader h2{margin-bottom: 0}
 .projectsList i{    color: rgba(70, 194, 255, 0.82);padding: 0 10px}
 .projectsList span span{font-size: 15px !important;    color: #89889c;}
 .ant-layout{background-color: white}
 .thematic{
     color: #096dd9;    text-transform: capitalize;}
-.projectHeader{display: flex;justify-content: space-between}   
-.thematiqueHeader{border: 1px solid #213869;  margin-bottom: 5px;padding: 5px;border-radius: 5px;} 
+  
+.thematiqueHeader{border: 1px solid #e6d8d8;  margin-bottom: 0px;padding: 5px;border-radius: 5px;} 
 .ant-list-item-meta-title{margin-bottom: 0px !important}
 .description{color: black;
     text-align: justify;}
