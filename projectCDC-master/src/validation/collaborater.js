@@ -6,7 +6,6 @@ module.exports = function validateCollaboraterInput(data) {
 
   data.name = !isEmpty(data.name) ? data.name : "";
   data.country = !isEmpty(data.country) ? data.country : "";
-  data.bio = !isEmpty(data.bio) ? data.bio : "";
 
   if (Validator.isEmpty(data.name)) {
     errors.name = "Name field is required";
@@ -14,10 +13,6 @@ module.exports = function validateCollaboraterInput(data) {
 
   if (Validator.isEmpty(data.country)) {
     errors.country = "Country field is required";
-  }
-
-  if (Validator.isEmpty(data.bio)) {
-    errors.bio = "Bio field is required";
   }
 
   return {

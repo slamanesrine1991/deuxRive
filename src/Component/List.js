@@ -1,14 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchProject } from "../actions/ProjectAction";
-import Projet from "./Projet";
+import { Input } from 'antd';
 import 'antd/dist/antd.css';
 import { List, Avatar, Icon,Button } from 'antd';
 import { Layout, Menu} from 'antd';
+import ReactTextMoreLess from 'react-text-more-less';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
-
+const Search = Input.Search;
 
 const mapDispatchToProps = dispatch => ({
     fetchProject: () => {
@@ -20,24 +21,25 @@ const mapStateToProps = state => ({
 });
 
 
-const projects = [];
-for (let i = 0; i < 20; i++) {
-  projects.push({
+// const projects = [];
+// for (let i = 0; i < 20; i++) {
+//   projects.filter(x => x.title.toLowerCase().includes( this.state.value)).push({
     
-    title: `ant design part ${i}`,
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    country:'tunisie',
-      organizer:'assosiation',
-      thematic:'energinitique',
-      description:
-   <div style = {{display : 'flex',flexDirection :'column'}}>
-      <p style = {{flex : 10}}>'We supply a series of design principlely and efficiently.'</p>  
-     <div style = {{flex :2 , margin : 10, display : 'flex',alignItem:"flexEnd" }}> 
+//     title: <h2>`ant design part ${i}`</h2>,
+//     // avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+//     country:'tunisie',
+//       organizer:'assosiation',
+//       thematic:'energinitique',
+//       document:'pdf',
+//       description:
+//    <div style = {{display : 'flex',flexDirection :'column'}}>
+//       <p style = {{flex : 10}}>'We supply a series of design principlely and efficiently.'</p>  
+//      <div style = {{flex :2 , margin : 10, display : 'flex',alignItem:"flexEnd" }}> 
 
- </div>
-  </div>,
-  });
-}
+//  </div>
+//   </div>,
+//   })
+// }
 const IconText = ({ type, text,size="25px"  }) => (
     <span>
        <span style = {{fontSize :"18px"}}> {text}</span>
@@ -48,13 +50,57 @@ const IconText = ({ type, text,size="25px"  }) => (
 
 
 class Dashboard extends React.Component {
+  state = {
+    collapsed: true,
+    value:''
+  };
+  searchValue=(e)=>{
+    console.log(e.target.value)
+this.setState({
+  value:e.target.value
+})
+  }
+  handleReflow = (rleState) => {
+    const {
+      clamped,
+      text,
+    } = rleState
+    // do sth...
+  }
     componentDidMount() {
         this.props.fetchProject();
         
       }
+data=(x)=>{
+console.log(x,'xx')
+
+  const projects = [];
+  const inComeData = !x ? [] : x
+  for (let i = 0; i < inComeData.length ; i++) {
+
+      projects.push({
+     
+        title: <h2>{inComeData[i].title}</h2>,
+        // avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+        country: inComeData[i].country,
+          organizer: inComeData[i].organizer,
+          thematic: inComeData[i].thematic,
+          document: inComeData[i].document,
+          description:  inComeData[i].description
+  
+      })
+    
+  
+  }
+return projects
+}
+
+
+
   render() {
     const {  projects } = this.props;
-
+    console.log(this.data(),'data')
+    const { collapsed } = this.state;
     return !projects ? ("Loading"):(
       <div >
  <Layout>
@@ -66,32 +112,36 @@ class Dashboard extends React.Component {
          defaultSelectedKeys={['1']}
          defaultOpenKeys={['sub1']}
          style={{ height: '100%', borderRight: 0 }}
+       
        >
-         <SubMenu
+        
+         {/* <SubMenu
            key="sub1"
            title={
              <span>
-               <Icon type="user" />
-               subnav 1
+               <Icon type="search" />
+               Recherche
              </span>
            }
-         >
-           <Menu.Item key="1">option1</Menu.Item>
-           <Menu.Item key="2">option2</Menu.Item>
-           <Menu.Item key="3">option3</Menu.Item>
-           <Menu.Item key="4">option4</Menu.Item>
-         </SubMenu>
+         > */}
+          <Search
+      placeholder="SEARCH"
+      onChange={this.searchValue}
+      style={{   marginLeft: '20px',width:'168px'}}
+    />
+         {/* </SubMenu> */}
+
          <SubMenu
            key="sub2"
            title={
              <span>
-               <Icon type="laptop" />
-               subnav 2
+               <Icon type="setting" />
+               Thématique
              </span>
            }
          >
-           <Menu.Item key="5">option5</Menu.Item>
-           <Menu.Item key="6">option6</Menu.Item>
+           <Menu.Item key="5">Energitique</Menu.Item>
+           <Menu.Item key="6">Mecanique</Menu.Item>
            <Menu.Item key="7">option7</Menu.Item>
            <Menu.Item key="8">option8</Menu.Item>
          </SubMenu>
@@ -99,13 +149,13 @@ class Dashboard extends React.Component {
            key="sub3"
            title={
              <span>
-               <Icon type="notification" />
-               subnav 3
+               <Icon  type="flag" />
+               Pays
              </span>
            }
          >
-           <Menu.Item key="9">option9</Menu.Item>
-           <Menu.Item key="10">option10</Menu.Item>
+           <Menu.Item key="9">Tunisie</Menu.Item>
+           <Menu.Item key="10">France</Menu.Item>
            <Menu.Item key="11">option11</Menu.Item>
            <Menu.Item key="12">option12</Menu.Item>
          </SubMenu>
@@ -134,7 +184,7 @@ class Dashboard extends React.Component {
       },
       pageSize: 10,
     }}
-    dataSource={projects}
+    dataSource={this.data(projects)}
     footer={
       <div>
         {/* <b>ant design</b>  */}
@@ -147,31 +197,48 @@ class Dashboard extends React.Component {
         key={item.title}
         actions={[
     
-          <IconText type="download" text="TELECHARGER LE DOCUMENT EN PDF"size = "16px" />,
+          // <IconText type="download" text="TELECHARGER LE DOCUMENT EN PDF"size = "16px" />,
       
         ]}
-        // extra={
-        //   <img
-        //     width={272}
-        //     alt="logo"
-        //     src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-        //   />
-        // }
+       
       >
         <List.Item.Meta 
-          avatar={<Avatar src={item.avatar} />}
+          // avatar={<Avatar src={item.avatar} />}
          
-          title={item.title}
-           description={<div className='thematic'>{item.organizer}, {item.thematic}</div>}
+          title={<div className='projectHeader'>{item.title}{<p className='thematiqueHeader'>{item.thematic}</p>}</div>}
+           description={<div className='thematic'>{item.organizer}, {item.country} </div>}
         />
-       {<p>{item.country}</p>}
-      {<div>  {item.description}</div> }
+      
+      {<div className='description'> 
+      <ReactTextMoreLess
+        collapsed={collapsed}
+        text=   {item.description}
+        lessHeight={100}
+        showMoreText="... Lire la suite"
+        showMoreElement={
+          <Button className='lire-la-suite'>
+          Lire la suite
+          <Icon type="right" />
+        </Button>
+        }
+        showLessElement={<span className="show-more-text">...</span>}
+        onClick={() => {
+          this.setState({ collapsed: !collapsed });
+        }}
+      />
+           
+     
+      </div> } 
+      {/* {`http://localhost:5000/${item.document}`}  */}
+     <a download= {item.document} href='#'><IconText type="download" text="TELECHARGER LE DOCUMENT EN PDF"size = "16px" /></a>
+      
+    
+      
       </List.Item>
     )}
   />
 
-<span class="flag-icon-012 flag-icon-gr">hello</span>
-<span class="flag-icon flag-icon-gr flag-icon-squared"></span>
+
       </div>
      </Layout>
    </Layout>

@@ -19,14 +19,19 @@ const ProjectSchema = new Schema({
     type: String,
     required: true
   },
-  contact: {
-    type: String
-  },
   description: {
     type: String
   },
   document: {
     type: String
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  validEmail: {
+    type: String,
+    default: "false"
   },
   date: {
     type: String,

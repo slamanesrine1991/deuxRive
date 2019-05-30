@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+const upload = require("../config/upload");
 
 // Load Validation
 const validateProjectInput = require("../validation/project");
@@ -45,6 +46,7 @@ router.get("/:id", (req, res) => {
 // @access  Private
 router.post(
   "/create",
+  upload.single("document"),
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateProjectInput(req.body);
@@ -59,11 +61,11 @@ router.post(
     const projectFields = {};
     if (req.body.title) projectFields.title = req.body.title;
     if (req.body.country) projectFields.country = req.body.country;
+    if (req.body.email) projectFields.email = req.body.email;
     if (req.body.organizer) projectFields.organizer = req.body.organizer;
     if (req.body.thematic) projectFields.thematic = req.body.thematic;
-    if (req.body.contact) projectFields.contact = req.body.contact;
     if (req.body.description) projectFields.description = req.body.description;
-    if (req.body.document) projectFields.document = req.body.document;
+    if (req.file) projectFields.document = req.file.path;
 
     new Project(projectFields).save().then(project => res.json(project));
   }
@@ -74,6 +76,7 @@ router.post(
 // @access  Private
 router.put(
   "/update/:id",
+  upload.single("document"),
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateProjectInput(req.body);
@@ -88,11 +91,12 @@ router.put(
     const projectFields = {};
     if (req.body.title) projectFields.title = req.body.title;
     if (req.body.country) projectFields.country = req.body.country;
+    if (req.body.email) projectFields.email = req.body.email;
     if (req.body.organizer) projectFields.organizer = req.body.organizer;
     if (req.body.thematic) projectFields.thematic = req.body.thematic;
-    if (req.body.contact) projectFields.contact = req.body.contact;
     if (req.body.description) projectFields.description = req.body.description;
     if (req.body.document) projectFields.document = req.body.document;
+    if (req.file) projectFields.document = req.file.path;
 
     Project.findOneAndUpdate(
       { _id: req.params.id },

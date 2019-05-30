@@ -19,8 +19,7 @@ const CollaboraterSchema = new Schema({
     default: "false"
   },
   bio: {
-    type: String,
-    required: true
+    type: String
   },
   date: {
     type: String,

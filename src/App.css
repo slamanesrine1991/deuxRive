@@ -1,19 +1,20 @@
 
 @import '~antd/dist/antd.css';
 /*nav bar*/
+.navBar ul{border:none}
 .navBar{    margin-top: 15px;text-transform: uppercase;display: flex;
-    justify-content: space-between;}
+    justify-content: center;margin-bottom: 35px;}
 .navBar li{min-width: 72px;
     height: 64px;
     line-height: 60px;}
 .navBar input{border:none}
 .logo img{
     /*width: 210px;*/
-    width: 110px;
+    width: 140px;
     margin-left: 20px;
 }
 .logo{    min-width: 280px;}
-.logo:after{    content: "";
+/* .logo:after{    content: "";
     height: 25px;
     position: relative;
 
@@ -23,7 +24,7 @@
     background-color: #dcd8d8;
    
     left: 145px;
-}
+} */
 .logo span{    margin-left: 20px;}
 .logoSearch input{padding-left: 20px;}
 .logoSearch span span {left:0px}
@@ -40,9 +41,18 @@ display: flex;text-transform: uppercase}
 
 /*projects*/
 .projectsList .ant-list-pagination {display: flex; justify-content: center}
-.projectsList h4{text-transform: uppercase;color:#213869;    font-size: 20px;}
+.projectHeader{text-transform: uppercase;color:#213869;    font-size: 20px;    line-height: 20px;
+margin-bottom: 0 !important}
 .projectsList i{    color: rgba(70, 194, 255, 0.82);padding: 0 10px}
 .projectsList span span{font-size: 15px !important;    color: #89889c;}
 .ant-layout{background-color: white}
 .thematic{
-    color: #096dd9;}
+    color: #096dd9;    text-transform: capitalize;}
+.projectHeader{display: flex;justify-content: space-between}   
+.thematiqueHeader{border: 1px solid #213869;  margin-bottom: 5px;padding: 5px;border-radius: 5px;} 
+.ant-list-item-meta-title{margin-bottom: 0px !important}
+.description{color: black;
+    text-align: justify;}
+.lire-la-suite{padding: 5px;  margin-top: 5px;    border: none;}
+         
+.lire-la-suite i{padding: 0;color: rgb(0, 136, 204);}
