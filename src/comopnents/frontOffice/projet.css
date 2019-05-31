@@ -1,0 +1,65 @@
+.projectsList .ant-list-pagination {
+  display: flex;
+  justify-content: center;
+}
+.projectHeader {
+  text-transform: uppercase;
+  color: #213869;
+  font-size: 20px;
+  line-height: 20px;
+  height: fit-content;
+  align-items: center;
+  margin-bottom: 20px !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.projectHeader h2 {
+  margin-bottom: 0;
+}
+.projectsList i {
+  color: rgba(70, 194, 255, 0.82);
+  padding: 0 10px;
+}
+.projectsList span span {
+  font-size: 14px !important;
+  color: #89889c;
+}
+.ant-layout {
+  background-color: white;
+}
+.thematic {
+  color: #096dd9;
+  text-transform: capitalize;
+}
+.project-card {
+  padding: 20PX 30PX !important;
+}
+
+.thematique-header {
+  border: 1px solid #e6d8d8;
+  margin-bottom: 0px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-size: 19px
+}
+.ant-list-item-meta-title {
+  margin-bottom: 0px !important;
+}
+.description {
+  color: black;
+  text-align: justify;
+  padding-bottom: 20px;
+}
+.expand {
+  font-size: 16px;
+  color: #48b9e1;
+  position: relative;
+  top: 2px;
+}
+.expand-up {
+  font-size: 16px;
+  color: #48b9e1;
+  position: relative;
+  top: 3px;
+}

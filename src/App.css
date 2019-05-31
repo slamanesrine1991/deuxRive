@@ -1,24 +1,248 @@
+/* .App {
+  text-align: center;
+}
 
-@import '~antd/dist/antd.css';
-/*nav bar*/
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
 
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
 
-/*projects*/
-.projectsList .ant-list-pagination {display: flex; justify-content: center}
-.projectHeader{text-transform: uppercase;color:#213869;    font-size: 20px;    line-height: 20px;    align-items: center;
-margin-bottom: 20px !important;display: flex;justify-content: space-between}
+.App-link {
+  color: #61dafb;
+}
 
-.projectHeader h2{margin-bottom: 0}
-.projectsList i{    color: rgba(70, 194, 255, 0.82);padding: 0 10px}
-.projectsList span span{font-size: 15px !important;    color: #89889c;}
-.ant-layout{background-color: white}
-.thematic{
-    color: #096dd9;    text-transform: capitalize;}
-  
-.thematiqueHeader{border: 1px solid #e6d8d8;  margin-bottom: 0px;padding: 5px;border-radius: 5px;} 
-.ant-list-item-meta-title{margin-bottom: 0px !important}
-.description{color: black;
-    text-align: justify;}
-.lire-la-suite{padding: 5px;  margin-top: 5px;    border: none;}
-         
-.lire-la-suite i{padding: 0;color: rgb(0, 136, 204);}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+@import "~antd/dist/antd.css";
+
+.test {
+  white-space: nowrap;
+  width: 20px !important ;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+table > tbody > tr > td + td + td + td {
+  overflow: hidden;
+  max-width: 250px;
+  min-width: 10%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 37px !important;
+}
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 37px !important;
+}
+img {
+  width: 80%;
+}
+.photo {
+  width: 220px;
+}
+#contact-Object {
+  -webkit-font-smoothing: antialiased;
+  font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  font-size: 1.375rem;
+  font-variant-ligatures: no-contextual;
+  color: #202124;
+  font-weight: 400;
+}
+#contact-Name {
+  -webkit-font-smoothing: antialiased;
+  font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  letter-spacing: 0.2px;
+  color: #202124;
+  line-height: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+#contact-Email {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-font-smoothing: auto;
+  font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.3px;
+  color: #5f6368;
+
+  line-height: 20px;
+  max-width: -webkit-calc(100% - 8px);
+  max-width: calc(100% - 8px);
+}
+.login-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.login-form {
+  width: 300px;
+}
+.delte-selected-projects {
+  display: flex;
+  flex-direction: column;
+}
+/* a {
+  color: white;
+} */
+.Log-out:hover {
+  color: red;
+}
+#image-logo-admin {
+  width: 100%;
+}
+#logo-admin {
+  margin: 10px 0 0 0;
+}
+.add-style-menu {
+  margin-top: 15px;
+}
+.custom-file-input {
+  color: transparent;
+  font-weight: 200 !important;
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+  font-weight: 200 !important;
+}
+.custom-file-input::before {
+  content: "Upload";
+  padding: 5px 8px;
+  outline: none;
+  color: #40a9ff;
+  border: 0px none;
+  display: inline-block;
+  font-family: "Segoe UI", sans-serif;
+
+  margin-top: 15px;
+  margin-bottom: 12px;
+  height: 45px;
+  background: -webkit-linear-gradient(top, white, white);
+
+  border-radius: 3px;
+
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 9pt;
+  line-height: 35px;
+  background-color: red;
+}
+.custom-file-input::before {
+  font-weight: 400 !important;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active {
+  outline: 0;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+.select-tag {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  height: 45px;
+  width: 74px;
+}
+.message-card {
+  margin: 15px 0;
+}
+.widh-textarea {
+  width: 50%;
+}
+.width-10 {
+  width: 10%;
+}
+.sider-link {
+  color: white;
+}
+/*** front office */
+
+.projectsList .ant-list-pagination {
+  display: flex;
+  justify-content: center;
+}
+.projectHeader {
+  text-transform: uppercase;
+  color: #213869;
+  font-size: 20px;
+  line-height: 20px;
+  align-items: center;
+  margin-bottom: 20px !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.projectHeader h2 {
+  margin-bottom: 0;
+}
+.projectsList i {
+  color: rgba(70, 194, 255, 0.82);
+  padding: 0 10px;
+}
+.projectsList span span {
+  font-size: 15px !important;
+  color: #89889c;
+}
+.ant-layout {
+  background-color: white;
+}
+.thematic {
+  color: #096dd9;
+  text-transform: capitalize;
+}
+
+.thematiqueHeader {
+  border: 1px solid #e6d8d8;
+  margin-bottom: 0px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.ant-list-item-meta-title {
+  margin-bottom: 0px !important;
+}
+.description {
+  color: black;
+  text-align: justify;
+}
+.lire-la-suite {
+  padding: 5px;
+  margin-top: 5px;
+  border: none;
+}
+
+.lire-la-suite i {
+  padding: 0;
+  color: rgb(0, 136, 204);
+}

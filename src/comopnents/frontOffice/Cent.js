@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React ,{ Fragment } from "react";
+import { connect } from "react-redux";
 import {
   Layout,
   Menu,
@@ -10,54 +10,54 @@ import {
   Input,
   Avatar,
   Checkbox
-} from 'antd';
-import 'antd/dist/antd.css';
-import MediaControlCard from './centCard';
-import { getCent } from '../actions/centActions';
-import Spinner from './spinner';
-
+} from "antd";
+import "antd/dist/antd.css";
+import MediaControlCard from "./centCard";
+import { getPersons } from "../../actions/centActions";
+import Spinner from "./spinner";
+import NavBar from "./NavBar";
 const Search = Input.Search;
 
 const countries = [
   {
-    name: 'Espagne',
-    flag: 'https://cdn.countryflags.com/thumbs/spain/flag-square-250.png'
+    name: "Espagne",
+    flag: "https://cdn.countryflags.com/thumbs/spain/flag-square-250.png"
   },
   {
-    name: 'France',
-    flag: 'https://cdn.countryflags.com/thumbs/france/flag-square-250.png'
+    name: "France",
+    flag: "https://cdn.countryflags.com/thumbs/france/flag-square-250.png"
   },
   {
-    name: 'Italie',
-    flag: 'https://cdn.countryflags.com/thumbs/italy/flag-square-250.png'
+    name: "Italie",
+    flag: "https://cdn.countryflags.com/thumbs/italy/flag-square-250.png"
   },
   {
-    name: 'Malte',
-    flag: 'https://cdn.countryflags.com/thumbs/malta/flag-square-250.png'
+    name: "Malte",
+    flag: "https://cdn.countryflags.com/thumbs/malta/flag-square-250.png"
   },
   {
-    name: 'Portugal',
-    flag: 'https://cdn.countryflags.com/thumbs/portugal/flag-square-250.png'
+    name: "Portugal",
+    flag: "https://cdn.countryflags.com/thumbs/portugal/flag-square-250.png"
   },
   {
-    name: 'Algérie',
-    flag: 'https://cdn.countryflags.com/thumbs/algeria/flag-square-250.png'
+    name: "Algérie",
+    flag: "https://cdn.countryflags.com/thumbs/algeria/flag-square-250.png"
   },
   {
-    name: 'Libye',
-    flag: 'https://cdn.countryflags.com/thumbs/libya/flag-square-250.png'
+    name: "Libye",
+    flag: "https://cdn.countryflags.com/thumbs/libya/flag-square-250.png"
   },
   {
-    name: 'Mauritanie',
-    flag: 'https://cdn.countryflags.com/thumbs/mauritania/flag-square-250.png'
+    name: "Mauritanie",
+    flag: "https://cdn.countryflags.com/thumbs/mauritania/flag-square-250.png"
   },
   {
-    name: 'Tunisie',
-    flag: 'https://cdn.countryflags.com/thumbs/tunisia/flag-square-250.png'
+    name: "Tunisie",
+    flag: "https://cdn.countryflags.com/thumbs/tunisia/flag-square-250.png"
   },
   {
-    name: 'Maroc',
-    flag: 'https://cdn.countryflags.com/thumbs/morocco/flag-square-250.png'
+    name: "Maroc",
+    flag: "https://cdn.countryflags.com/thumbs/morocco/flag-square-250.png"
   }
 ];
 class Cent extends React.Component {
@@ -69,7 +69,7 @@ class Cent extends React.Component {
     };
   }
   componentDidMount() {
-    this.props.getCent();
+    this.props.getPersons();
   }
   onChange = e => {
     this.setState({
@@ -84,10 +84,13 @@ class Cent extends React.Component {
     const { cent } = this.props;
     const { Content, Sider } = Layout;
     return (
+      <Fragment>
+        <NavBar/>
+      
       <div>
         <Layout>
           <Layout>
-            <Sider width={200} style={{ background: '#fff' }}>
+            <Sider width={250} style={{ background: '#fff' }}>
               <Menu
                 mode="inline"
                 defaultScountryectedKeys={['1']}
@@ -99,7 +102,7 @@ class Cent extends React.Component {
                   onChange={this.searchValue}
                   style={{
                     marginLeft: '20px',
-                    width: '168px',
+                    width: '90%',
                     marginBottom: '10px'
                   }}
                 />
@@ -126,7 +129,7 @@ class Cent extends React.Component {
               </Menu>
             </Sider>
 
-            <Layout style={{ padding: '0 24px 24px' }}>
+            <Layout style={{ padding: '0 24px 24px', background: '#fff' }}>
               <Row >
                 <Col span={21}>
                   {!cent.length > 0 ? (
@@ -187,8 +190,8 @@ class Cent extends React.Component {
                                 <List.Item
                                   className={
                                     item.chief === 'true'
-                                      ? 'ant-col-xxl-22'
-                                      : 'ant-col-xxl-11'
+                                      ? 'ant-col-xxl-22 ant-col-xl-22'
+                                      : 'ant-col-xxl-11 ant-col-xl-11'
                                   }
                                   style={{
                                     padding: '0 8px'
@@ -210,16 +213,17 @@ class Cent extends React.Component {
         </Layout>
         ,
       </div>
+      </Fragment>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  cent: state.centReducer
+  cent: state.Cent.centList
 });
 const mapDispatchToProps = dispatch => ({
-  getCent: () => {
-    dispatch(getCent());
+  getPersons: () => {
+    dispatch(getPersons());
   }
 });
 
