@@ -31,7 +31,7 @@ router.get("/all", (req, res) => {
 });
 
 // @route   GET api/project/:id
-// @desc    Get offre by id
+// @desc    Get project by id
 // @access  Public
 router.get("/:id", (req, res) => {
   Project.findOne({ _id: req.params.id })
@@ -64,6 +64,7 @@ router.post(
     if (req.body.email) projectFields.email = req.body.email;
     if (req.body.organizer) projectFields.organizer = req.body.organizer;
     if (req.body.thematic) projectFields.thematic = req.body.thematic;
+    if (req.body.validEmail) projectFields.validEmail = req.body.validEmail;
     if (req.body.description) projectFields.description = req.body.description;
     if (req.file) projectFields.document = req.file.path;
 
@@ -94,6 +95,7 @@ router.put(
     if (req.body.email) projectFields.email = req.body.email;
     if (req.body.organizer) projectFields.organizer = req.body.organizer;
     if (req.body.thematic) projectFields.thematic = req.body.thematic;
+    if (req.body.validEmail) projectFields.validEmail = req.body.validEmail;
     if (req.body.description) projectFields.description = req.body.description;
     if (req.body.document) projectFields.document = req.body.document;
     if (req.file) projectFields.document = req.file.path;
