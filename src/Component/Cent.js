@@ -1,63 +1,113 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Layout, Menu, Card, Icon, Col, Row, List, Typography, Input } from 'antd';
+import {
+  Layout,
+  Menu,
+  Icon,
+  Col,
+  Row,
+  List,
+  Input,
+  Avatar,
+  Checkbox
+} from 'antd';
 import 'antd/dist/antd.css';
 import MediaControlCard from './centCard';
 import { getCent } from '../actions/centActions';
+import Spinner from './spinner';
+
 const Search = Input.Search;
 
-
-const { Meta } = Card;
 const countries = [
-  'Espagne',
-  'France',
-  'Italie',
-  'Malte',
-  'Portugal',
-  'Algérie',
-  'Libye',
-  'Mauritanie',
-  'Tunisie',
-  'Maroc'
+  {
+    name: 'Espagne',
+    flag: 'https://cdn.countryflags.com/thumbs/spain/flag-square-250.png'
+  },
+  {
+    name: 'France',
+    flag: 'https://cdn.countryflags.com/thumbs/france/flag-square-250.png'
+  },
+  {
+    name: 'Italie',
+    flag: 'https://cdn.countryflags.com/thumbs/italy/flag-square-250.png'
+  },
+  {
+    name: 'Malte',
+    flag: 'https://cdn.countryflags.com/thumbs/malta/flag-square-250.png'
+  },
+  {
+    name: 'Portugal',
+    flag: 'https://cdn.countryflags.com/thumbs/portugal/flag-square-250.png'
+  },
+  {
+    name: 'Algérie',
+    flag: 'https://cdn.countryflags.com/thumbs/algeria/flag-square-250.png'
+  },
+  {
+    name: 'Libye',
+    flag: 'https://cdn.countryflags.com/thumbs/libya/flag-square-250.png'
+  },
+  {
+    name: 'Mauritanie',
+    flag: 'https://cdn.countryflags.com/thumbs/mauritania/flag-square-250.png'
+  },
+  {
+    name: 'Tunisie',
+    flag: 'https://cdn.countryflags.com/thumbs/tunisia/flag-square-250.png'
+  },
+  {
+    name: 'Maroc',
+    flag: 'https://cdn.countryflags.com/thumbs/morocco/flag-square-250.png'
+  }
 ];
 class Cent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chef: false,
+      search: ''
+    };
+  }
   componentDidMount() {
     this.props.getCent();
   }
+  onChange = e => {
+    this.setState({
+      chef: e.target.checked
+    });
+  };
+  searchValue = e => {
+    this.setState({ search: e.target.value.toLowerCase() });
+  };
   render() {
     const { SubMenu } = Menu;
-    const { Header, Content, Sider } = Layout;
-    const { Title } = Typography;
+    const { cent } = this.props;
+    const { Content, Sider } = Layout;
     return (
       <div>
         <Layout>
           <Layout>
-          <Sider width={200} style={{ background: '#fff' }}>
+            <Sider width={200} style={{ background: '#fff' }}>
               <Menu
                 mode="inline"
-                defaultSelectedKeys={['1']}
+                defaultScountryectedKeys={['1']}
                 defaultOpenKeys={['sub1']}
                 style={{ height: '100%', borderRight: 0 }}
               >
                 <Search
                   placeholder="SEARCH"
                   onChange={this.searchValue}
-                  style={{ marginLeft: '20px', width: '168px' }}
+                  style={{
+                    marginLeft: '20px',
+                    width: '168px',
+                    marginBottom: '10px'
+                  }}
                 />
-                <SubMenu
-                  key="sub2"
-                  title={
-                    <span>
-                      <Icon type="setting" />
-                      Thématique
-                    </span>
-                  }
-                >
-                  <Menu.Item key="5">Energitique</Menu.Item>
-                  <Menu.Item key="6">Mecanique</Menu.Item>
-                  <Menu.Item key="7">option7</Menu.Item>
-                  <Menu.Item key="8">option8</Menu.Item>
-                </SubMenu>
+                <Menu.Item key="0">
+                  <Icon type="user" />
+                  <Checkbox onChange={this.onChange}>Chef de file</Checkbox>
+                </Menu.Item>
+
                 <SubMenu
                   key="sub3"
                   title={
@@ -67,80 +117,91 @@ class Cent extends React.Component {
                     </span>
                   }
                 >
-                  <Menu.Item key="9">Tunisie</Menu.Item>
-                  <Menu.Item key="10">France</Menu.Item>
-                  <Menu.Item key="11">option11</Menu.Item>
-                  <Menu.Item key="12">option12</Menu.Item>
+                  {countries.map((el, i) => (
+                    <Menu.Item key={i + 1}>
+                      <Checkbox onChange={this.onChange}>{el.name}</Checkbox>
+                    </Menu.Item>
+                  ))}
                 </SubMenu>
               </Menu>
             </Sider>
-        
-            
-            <Layout style={{ padding: '24px 24px' }}>
-              <Row>
+
+            <Layout style={{ padding: '0 24px 24px' }}>
+              <Row >
                 <Col span={21}>
-                  <Content
-                    style={{
-                      background: '#fff',
-                      padding: '40px 80px',
-                      margin: 0,
-                      minHeight: 280,
-                      minWidth: 'fit-content'
-                    }}
-                  >
-                    {countries.map((el, i) => (
-                      <div key={i}>
-                        <Title>{el}</Title>
-                        <List
-                          grid={{
-                            gutter: 16,
-                            // xs: 1,
-                            // sm: 1,
-                            // md: 1,
-                            // lg: 1,
-                            // xl: 1,
-                            // xxl: (item.chief) ? 1 : 2
-                          }}
-                          dataSource={this.props.cent.filter(item=>item.country.toLowerCase()===el.toLowerCase())}
-                          renderItem={(item) => 
-                            (  
-                              //  <div  className= {item.chief ? 'full' : 'half'}>
-                            <List.Item
-                              style={{
-                                display: item.chief === "true" ? "block" : 'flex',
-                                flexWrap: "wrap",
-                                width: item.chief === "true" ? "100%" : "50%"
+                  {!cent.length > 0 ? (
+                    <Spinner />
+                  ) : (
+                    <Content
+                      style={{
+                        background: '#fff',
+                        margin: 0,
+                        minWidth: 'fit-content'
+                      }}
+                    >
+                      {/* this is where we're filtering the countries without data and without matching names (while searching) */}
+                      {countries
+                        .filter(
+                          country =>
+                            cent.filter(
+                              item =>
+                                item.country.toLowerCase() ===
+                                  country.name.toLowerCase() &&
+                                item.name
+                                  .toLowerCase()
+                                  .includes(this.state.search)
+                            ).length > 0
+                        )
+                        .map((country, i) => (
+                          <div key={i} style={{ marginBottom: '20px' }}>
+                            <div className="country">
+                              <Avatar
+                                src={country.flag}
+                                className="flag-avatar"
+                                size="small"
+                              />
+                              <h2>{country.name.toUpperCase()}</h2>
+                            </div>
+                            <List
+                              grid={{
+                                gutter: 16
                               }}
-                            >
-                              <MediaControlCard item={item}  />
-                           
-                            </List.Item>
-                              //  </div>
-                          )}
-                        />
-                      </div>
-                    ))}
-                    <div style={{ padding: '30px' }}>
-                      <Card
-                        hoverable
-                        style={{ width: 240 }}
-                        cover={
-                          <img
-                            alt="example"
-                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                          />
-                        }
-                      >
-                        <Meta
-                          title="Europe Street beat"
-                          description="We supply a series of design principles, practical
-                        patterns and high quality design resources (Sketch and
-                        Axure), to help people create their product prototypes
-                        beautifully and efficiently."
-                        />
-                      </Card>
-                    </div>
-                  </Content>
+                            //   style={{ border:'1px solid black', display:"flex", justifyContent:"center"}}
+
+                            //   this is where we're passing, mapping and filtering the list of 'cent' (in dataSource)
+                              dataSource={cent
+                                .filter(
+                                  item =>
+                                    item.country.toLowerCase() ===
+                                      country.name.toLowerCase() &&
+                                    item.name
+                                      .toLowerCase()
+                                      .includes(this.state.search)
+                                )
+                                .filter(el => {
+                                  return this.state.chef
+                                    ? el.chief === 'true'
+                                    : el;
+                                })}
+                              renderItem={item => (
+                                <List.Item
+                                  className={
+                                    item.chief === 'true'
+                                      ? 'ant-col-xxl-22'
+                                      : 'ant-col-xxl-11'
+                                  }
+                                  style={{
+                                    padding: '0 8px'
+                                  }}
+                                >
+                                  <MediaControlCard item={item} />
+                                </List.Item>
+                              )}
+                            />
+                          </div>
+                        ))}
+                    </Content>
+                  )}
                 </Col>
                 <Col span={3} />
               </Row>
