@@ -1,0 +1,38 @@
+.home-cover img{   max-width: 100%;
+    position: absolute;
+    top: 0px;
+z-index: -1000;
+filter:opacity(70%)} 
+.home-page h1{
+    position: relative;
+  
+    text-align: left;
+    margin-left: 160px;
+    font-size: 50px;
+    text-transform: uppercase;
+    color:white;
+ 
+    max-width: fit-content;
+    padding: 5px 10px;
+
+}
+.home-page{    overflow: hidden;}
+.home-page span {   background-color: #213869;    padding-left: 10px;padding-right: 10px}
+.home-page h2{
+    margin-top: 234px;
+    text-align: center;
+    font-size: 27px;
+    line-height: 45px;
+}
+.home-paragraph {
+color:#5a5a5a;
+    text-align: center;
+    font-size: 15px;
+    line-height: 34px;
+}
+.gutter-box img{    max-width: 50%;
+ 
+    filter: opacity(70%);
+}
+.gutter-example {    max-width: 80%;
+    margin: auto;}

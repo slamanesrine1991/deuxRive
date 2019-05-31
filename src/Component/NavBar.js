@@ -6,7 +6,7 @@ import Home from './Home'
 import Contact from './Contact'
 import Cent from './Cent';
 import Forum from './Forum';
-import logo from '../img/logo-rive.png';
+import logo from '../img/bleu-sansfond.png';
 import { Link } from "react-router-dom";
 import { Menu } from 'antd';
 import './navbar.css'

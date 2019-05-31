@@ -1,6 +1,7 @@
-.navBar ul{border:none}
+.navBar ul{border:none;    background-color: transparent;}
 .navBar{    margin-top: 15px;text-transform: uppercase;display: flex;
-    justify-content: space-around;margin-bottom: 35px;align-items: center;}
+    justify-content: space-around;margin-bottom: 35px;align-items: center;background-color: transparent;
+    position: relative;}
 .navBar li{min-width: 72px;
     height: 64px;
     line-height: 60px;}
