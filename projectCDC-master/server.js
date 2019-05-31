@@ -6,6 +6,7 @@ const passport = require("passport");
 const admin = require("./src/routes/admin");
 const project = require("./src/routes/project");
 const collaborater = require("./src/routes/collaborater");
+const contact = require("./src/routes/contact");
 
 const app = express();
 
@@ -34,6 +35,7 @@ require("./src/config/passport")(passport);
 app.use("/api/users", admin);
 app.use("/api/project", project);
 app.use("/api/collaborater", collaborater);
+app.use("/api/contact", contact);
 
 const port = process.env.PORT || 5000;
 
