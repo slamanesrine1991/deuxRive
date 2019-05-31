@@ -63,7 +63,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  flex: 1
+  flex: 1;
+  color: #89889c;
 }
 
 

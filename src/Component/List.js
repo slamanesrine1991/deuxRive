@@ -3,15 +3,65 @@ import { connect } from 'react-redux';
 import { fetchProject } from '../actions/ProjectAction';
 import { Input } from 'antd';
 import 'antd/dist/antd.css';
-import { List, Avatar, Icon, Button } from 'antd';
-import { Layout, Menu } from 'antd';
-import ReactTextMoreLess from 'react-text-more-less';
-import Spinner from './spinner'
-
+import { List, Icon, Checkbox } from 'antd';
+import { Layout, Menu, Col, Row } from 'antd';
+import OverflowText from './showMore';
+import Spinner from './spinner';
+import './projet.css';
 
 const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+const { Sider } = Layout;
 const Search = Input.Search;
+const thematics = [
+  'Culture',
+  'Tourisme',
+  'Media',
+  'Environnement et développement durable',
+  'Economie et compétitivité',
+  'Jeunesse, éducation et mobilité'
+];
+const countries = [
+  {
+    name: 'Espagne',
+    flag: 'https://cdn.countryflags.com/thumbs/spain/flag-square-250.png'
+  },
+  {
+    name: 'France',
+    flag: 'https://cdn.countryflags.com/thumbs/france/flag-square-250.png'
+  },
+  {
+    name: 'Italie',
+    flag: 'https://cdn.countryflags.com/thumbs/italy/flag-square-250.png'
+  },
+  {
+    name: 'Malte',
+    flag: 'https://cdn.countryflags.com/thumbs/malta/flag-square-250.png'
+  },
+  {
+    name: 'Portugal',
+    flag: 'https://cdn.countryflags.com/thumbs/portugal/flag-square-250.png'
+  },
+  {
+    name: 'Algérie',
+    flag: 'https://cdn.countryflags.com/thumbs/algeria/flag-square-250.png'
+  },
+  {
+    name: 'Libye',
+    flag: 'https://cdn.countryflags.com/thumbs/libya/flag-square-250.png'
+  },
+  {
+    name: 'Mauritanie',
+    flag: 'https://cdn.countryflags.com/thumbs/mauritania/flag-square-250.png'
+  },
+  {
+    name: 'Tunisie',
+    flag: 'https://cdn.countryflags.com/thumbs/tunisia/flag-square-250.png'
+  },
+  {
+    name: 'Maroc',
+    flag: 'https://cdn.countryflags.com/thumbs/morocco/flag-square-250.png'
+  }
+];
 
 const mapDispatchToProps = dispatch => ({
   fetchProject: () => {
@@ -22,25 +72,6 @@ const mapStateToProps = state => ({
   projects: state.projectReducer
 });
 
-// const projects = [];
-// for (let i = 0; i < 20; i++) {
-//   projects.filter(x => x.title.toLowerCase().includes( this.state.value)).push({
-
-//     title: <h2>`ant design part ${i}`</h2>,
-//     // avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-//     country:'tunisie',
-//       organizer:'assosiation',
-//       thematic:'energinitique',
-//       document:'pdf',
-//       description:
-//    <div style = {{display : 'flex',flexDirection :'column'}}>
-//       <p style = {{flex : 10}}>'We supply a series of design principlely and efficiently.'</p>
-//      <div style = {{flex :2 , margin : 10, display : 'flex',alignItem:"flexEnd" }}>
-
-//  </div>
-//   </div>,
-//   })
-// }
 const IconText = ({ type, text, size = '25px' }) => (
   <span>
     <span style={{ fontSize: '18px' }}> {text}</span>
@@ -55,13 +86,10 @@ const IconText = ({ type, text, size = '25px' }) => (
 class Dashboard extends React.Component {
   state = {
     collapsed: true,
-    value: ''
+    search: ''
   };
   searchValue = e => {
-    console.log(e.target.value);
-    this.setState({
-      value: e.target.value
-    });
+    this.setState({ search: e.target.value.toLowerCase() });
   };
   handleReflow = rleState => {
     const { clamped, text } = rleState;
@@ -78,7 +106,6 @@ class Dashboard extends React.Component {
     for (let i = 0; i < inComeData.length; i++) {
       projects.push({
         title: <h2>{inComeData[i].title}</h2>,
-        // avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
         country: inComeData[i].country,
         organizer: inComeData[i].organizer,
         thematic: inComeData[i].thematic,
@@ -91,36 +118,26 @@ class Dashboard extends React.Component {
 
   render() {
     const { projects } = this.props;
-    const { collapsed } = this.state;
-  
-    return !projects.length>0 ? (
-      <Spinner />
-    ) : (
+
+    return (
       <div>
         <Layout>
           <Layout>
-            <Sider width={200} style={{ background: '#fff' }}>
+            <Sider width={250} style={{ background: '#fff' }}>
               <Menu
                 mode="inline"
                 defaultSelectedKeys={['1']}
                 defaultOpenKeys={['sub1']}
                 style={{ height: '100%', borderRight: 0 }}
               >
-                {/* <SubMenu
-           key="sub1"
-           title={
-             <span>
-               <Icon type="search" />
-               Recherche
-             </span>
-           }
-         > */}
                 <Search
                   placeholder="SEARCH"
                   onChange={this.searchValue}
-                  style={{ marginLeft: '20px', width: '168px' }}
-                />
-                {/* </SubMenu> */}
+                  style={{
+                    marginLeft: '20px',
+                    width: '90%',
+                    marginBottom: '10px'
+                  }}                />
 
                 <SubMenu
                   key="sub2"
@@ -131,10 +148,11 @@ class Dashboard extends React.Component {
                     </span>
                   }
                 >
-                  <Menu.Item key="5">Energitique</Menu.Item>
-                  <Menu.Item key="6">Mecanique</Menu.Item>
-                  <Menu.Item key="7">option7</Menu.Item>
-                  <Menu.Item key="8">option8</Menu.Item>
+                  {thematics.map((el, i) => (
+                    <Menu.Item key={i + 1}>
+                      <Checkbox onChange={this.onChange}>{el}</Checkbox>
+                    </Menu.Item>
+                  ))}
                 </SubMenu>
                 <SubMenu
                   key="sub3"
@@ -145,101 +163,82 @@ class Dashboard extends React.Component {
                     </span>
                   }
                 >
-                  <Menu.Item key="9">Tunisie</Menu.Item>
-                  <Menu.Item key="10">France</Menu.Item>
-                  <Menu.Item key="11">option11</Menu.Item>
-                  <Menu.Item key="12">option12</Menu.Item>
+                  {countries.map((el, i) => (
+                    <Menu.Item key={i + 1}>
+                      <Checkbox onChange={this.onChange}>{el.name}</Checkbox>
+                    </Menu.Item>
+                  ))}
                 </SubMenu>
               </Menu>
             </Sider>
-            <Layout style={{ padding: '0 24px 24px' }}>
-              {/* <Content
-         style={{
-           background: '#fff',
-           padding: 24,
-           margin: 0,
-           minHeight: 280,
-         }}
-       >
-         Content
-       </Content> */}
-              <div className="projectsList">
-                <List
-                  itemLayout="vertical"
-                  size="large"
-                  bordered
-                  pagination={{
-                    onChange: page => {
-                      console.log(page);
-                    },
-                    pageSize: 10
-                  }}
-                  dataSource={this.data(projects)}
-                  footer={<div>{/* <b>ant design</b>  */}</div>}
-                  renderItem={item => (
-                    <List.Item
-                      bordered
-                      key={item.title}
-                      actions={
-                        [
-                          // <IconText type="download" text="TELECHARGER LE DOCUMENT EN PDF"size = "16px" />,
-                        ]
-                      }
-                    >
-                      <List.Item.Meta
-                        // avatar={<Avatar src={item.avatar} />}
-
-                        title={
-                          <div className="projectHeader">
-                            {item.title}
+            <Layout style={{ padding: '0 24px 24px', background: '#fff' }}>
+              <Row>
+                <Col span={21}>
+                  {!projects.length > 0 ? (
+                    <Spinner />
+                  ) : (
+                    <div className="projectsList">
+                      <List
+                        itemLayout="vertical"
+                        size="large"
+                        bordered
+                        pagination={{
+                          onChange: page => {
+                            console.log(page);
+                          },
+                          pageSize: 10
+                        }}
+                        dataSource={projects.filter(item =>
+                          item.title.toLowerCase().includes(this.state.search)
+                        )}
+                        renderItem={item => (
+                          <List.Item
+                            bordered
+                            key={item.title}
+                            className="project-card"
+                          >
+                            <List.Item.Meta
+                              title={
+                                <div className="projectHeader">
+                                  {item.title}
+                                  {
+                                    <p className="thematique-header">
+                                      {item.thematic}
+                                    </p>
+                                  }
+                                </div>
+                              }
+                              description={
+                                <div className="thematic">
+                                  {item.organizer}, {item.country}
+                                </div>
+                              }
+                            />
                             {
-                              <p className="thematiqueHeader">
-                                {item.thematic}
-                              </p>
+                              <div className="description">
+                                <OverflowText item={item.description} />
+                              </div>
                             }
-                          </div>
-                        }
-                        description={
-                          <div className="thematic">
-                            {item.organizer}, {item.country}{' '}
-                          </div>
-                        }
+                            {item.document ? (
+                              <a
+                                href={`http://localhost:5000${item.document}`}
+                                target="_blank"
+                              >
+                                <IconText
+                                  type="download"
+                                  text="TELECHARGER LE DOCUMENT EN PDF"
+                                  size="16px"
+                                />
+                              </a>
+                            ) : null}
+                          </List.Item>
+                        )}
                       />
-
-                      {
-                        <div className="description">
-                          <ReactTextMoreLess
-                            collapsed={collapsed}
-                            text={item.description}
-                            lessHeight={100}
-                            showMoreText="... Lire la suite"
-                            showMoreElement={
-                              <Button className="lire-la-suite">
-                                Lire la suite
-                                <Icon type="right" />
-                              </Button>
-                            }
-                            showLessElement={
-                              <span className="show-more-text">...</span>
-                            }
-                            onClick={() => {
-                              this.setState({ collapsed: !collapsed });
-                            }}
-                          />
-                        </div>
-                      }
-                      {/* {`http://localhost:5000/${item.document}`}  */}
-                      <a download={item.document} href="#">
-                        <IconText
-                          type="download"
-                          text="TELECHARGER LE DOCUMENT EN PDF"
-                          size="16px"
-                        />
-                      </a>
-                    </List.Item>
+                    </div>
                   )}
-                />
-              </div>
+                </Col>
+                <Col span={3} />
+              </Row>
             </Layout>
           </Layout>
         </Layout>

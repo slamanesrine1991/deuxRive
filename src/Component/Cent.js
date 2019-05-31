@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import './cent.css'
 import {
   Layout,
   Menu,
@@ -87,7 +88,7 @@ class Cent extends React.Component {
       <div>
         <Layout>
           <Layout>
-            <Sider width={200} style={{ background: '#fff' }}>
+            <Sider width={250} style={{ background: '#fff' }}>
               <Menu
                 mode="inline"
                 defaultScountryectedKeys={['1']}
@@ -99,7 +100,7 @@ class Cent extends React.Component {
                   onChange={this.searchValue}
                   style={{
                     marginLeft: '20px',
-                    width: '168px',
+                    width: '90%',
                     marginBottom: '10px'
                   }}
                 />
@@ -126,7 +127,7 @@ class Cent extends React.Component {
               </Menu>
             </Sider>
 
-            <Layout style={{ padding: '0 24px 24px' }}>
+            <Layout style={{ padding: '0 24px 24px', background: '#fff' }}>
               <Row >
                 <Col span={21}>
                   {!cent.length > 0 ? (
@@ -187,8 +188,8 @@ class Cent extends React.Component {
                                 <List.Item
                                   className={
                                     item.chief === 'true'
-                                      ? 'ant-col-xxl-22'
-                                      : 'ant-col-xxl-11'
+                                      ? 'ant-col-xxl-22 ant-col-xl-22'
+                                      : 'ant-col-xxl-11 ant-col-xl-11'
                                   }
                                   style={{
                                     padding: '0 8px'

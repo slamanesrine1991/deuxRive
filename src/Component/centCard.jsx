@@ -48,7 +48,8 @@ function MediaControlCard({ item }) {
                 lines={3}
                 more={
                   <i className="fas fa-chevron-down expand"
-                    onClick={handleExpandClick}/>
+                    onClick={handleExpandClick}
+                    />
                 }
                 less={
                   <i className="fas fa-chevron-up expand-up"

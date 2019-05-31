@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Spinner from './spinner'
+import Spinner from './spinner';
+import './projet.css'
 
 export class Projet extends Component {
   render() {
