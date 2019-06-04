@@ -22,7 +22,7 @@ import { connect } from "react-redux";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
-
+import Footer from './comopnents/frontOffice/Footer'
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -58,6 +58,7 @@ function App() {
           <PrivateRoute path="/dashboard" component={Dashboard} />
         </Switch>
       </Router>
+      <Footer/>
     </Provider>
   );
 }
